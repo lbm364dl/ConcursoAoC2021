@@ -37,13 +37,13 @@ check b x s = checkRow || checkCol
 score :: Board -> S.Set (Int, Int) -> Int
 score b s = sum [el | (xs, i) <- zip b [0..4], (el, j) <- zip xs [0..4], (i, j) `S.notMember` s]
 
-ans :: [Board] -> Nums -> ([(Int, Int)] -> (Int, Int)) -> Int -> Int
-ans b xs cmp def = snd . cmp . map (win xs def) $ b
+ans :: Nums -> ([(Int, Int)] -> (Int, Int)) -> Int -> [Board] -> Int
+ans xs cmp def = snd . cmp . map (win xs def)
 
 main = do
     inp <- readFile "input.txt"
     let ls = lines inp
     let nums = map read (split $ head ls) :: [Int]
     let tabs = tables (drop 2 ls)
-    putStrLn $ "Star 1: " ++ (show $ ans tabs nums minimum 10000)
-    putStrLn $ "Star 2: " ++ (show $ ans tabs nums maximum (-1))
+    putStrLn $ "Star 1: " ++ (show $ ans nums minimum 10000 tabs)
+    putStrLn $ "Star 2: " ++ (show $ ans nums maximum (-1) tabs)
