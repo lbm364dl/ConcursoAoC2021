@@ -12,7 +12,7 @@ to_num = {sum(cnt[c] for c in seg) : str(num) for num, seg in enumerate(segments
 tot = 0
 for entries, nums in inp:
     cnt = {c : sum(c in entry for entry in entries) for c in 'abcdefg'}
-    # sums of cnt are just permuted
+    # cnts are permuted, but the sum for each number is invariant
     # translate using the unique sum of cnt
     tot += int(''.join([to_num[sum(cnt[c] for c in num)] for num in nums]))
 
