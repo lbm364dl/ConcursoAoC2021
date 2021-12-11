@@ -19,7 +19,7 @@ def iter(inp, its = -1, sync = False):
     grid = np.copy(inp)
     s, i = 0, 1
     while True:
-        grid[:,:] += 1
+        grid += 1
         visited = set()
         for y, x in zip(*np.where(grid >= FLASH_LEVEL)):
             dfs(x, y, grid, visited)
