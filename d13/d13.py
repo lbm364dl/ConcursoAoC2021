@@ -19,4 +19,4 @@ paper[y, x] = 1;
 
 print('Star 1:', fold(paper, folds[0]).sum())
 print('Star 2:')
-print('\n'.join(''.join('.o'[c] for c in row) for row in reduce(fold, folds, paper)))
+print('\n'.join(''.join(' █'[c] for c in row) for row in reduce(fold, folds, paper)))
