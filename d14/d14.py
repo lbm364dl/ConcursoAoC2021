@@ -11,7 +11,7 @@ def iter(its):
             ps[rules[p] + p[1]] += v
             ps[p] -= v
 
-    cnt = [v for k, v in cnt.items() if v > 0]
+    *cnt, = filter(None, cnt.values())
     return max(cnt) - min(cnt)
 
 print('Star 1:', iter(10))
