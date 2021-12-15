@@ -12,29 +12,30 @@ grid = [[*map(int,l[:-1])] for l in open('input.txt')]
 n, m = len(grid), len(grid[0])
 
 def solve(rep = 1):
-    cost = {(i, j) : INF for i in range(rep*n) for j in range(rep*m)}
+    rn, rm = rep * n, rep * m
+    cost = {(i, j) : INF for i in range(rn) for j in range(rm)}
     cost[(0,0)] = 0
-    left = {(i, j) for i in range(rep*n) for j in range(rep*m)}
     # priority queue
-    pq = [(INF, i, j) for i in range(rep*n) for j in range(rep*m)]
-    pq[0] = (0, 0, 0)
+    pq = [(0, 0, 0)]
     heapq.heapify(pq)
 
     while pq:
-        # heap top element is the min cost node
+        # top element is the min cost node
         c, i, j = heapq.heappop(pq)
-        if c != cost[(i,j)]: continue
-        if (i, j) == (rep*n-1, rep*m-1):
-            return cost[(i, j)]
+        # ignore non optimal costs
+        if c != cost[(i,j)]:
+            continue
 
-        left.remove((i, j))
-        for ny, nx in [(i+1, j), (i-1, j), (i, j+1), (i, j-1)]:
-            if not (ny, nx) in left: continue
-            # cool way to get value in grid
-            val = (grid[ny%n][nx%m] + ny//n + nx//m -1) % 9 + 1
-            if c + val < cost[(ny,nx)]:
-                cost[(ny,nx)] = c + val
-                heapq.heappush(pq, (cost[(ny,nx)], ny, nx))
+        if (i, j) == (rn-1, rm-1):
+            return c
+
+        for y, x in [(i+1, j), (i-1, j), (i, j+1), (i, j-1)]:
+            if 0 <= y < rn and 0 <= x < rm:
+                # cool way to get value in grid
+                val = (grid[y%n][x%m] + y//n + x//m -1) % 9 + 1
+                if c + val < cost[(y,x)]:
+                    cost[(y,x)] = c + val
+                    heapq.heappush(pq, (cost[(y,x)], y, x))
 
     return INF
 
