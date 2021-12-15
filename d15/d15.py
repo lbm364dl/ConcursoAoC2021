@@ -16,13 +16,13 @@ def solve(rep = 1):
     cost[(0,0)] = 0
     left = {(i, j) for i in range(rep*n) for j in range(rep*m)}
     # priority queue
-    pq = [(INF, (i,j)) for i in range(rep*n) for j in range(rep*m)]
-    pq[0] = (0, (0, 0))
+    pq = [(INF, i, j) for i in range(rep*n) for j in range(rep*m)]
+    pq[0] = (0, 0, 0)
     heapq.heapify(pq)
 
     while pq:
         # heap top element is the min cost node
-        c, (i, j) = heapq.heappop(pq)
+        c, i, j = heapq.heappop(pq)
         if c != cost[(i,j)]: continue
         if (i, j) == (rep*n-1, rep*m-1):
             return cost[(i, j)]
@@ -34,7 +34,7 @@ def solve(rep = 1):
             val = (grid[ny%n][nx%m] + ny//n + nx//m -1) % 9 + 1
             if c + val < cost[(ny,nx)]:
                 cost[(ny,nx)] = c + val
-                heapq.heappush(pq, (cost[(ny,nx)], (ny, nx)))
+                heapq.heappush(pq, (cost[(ny,nx)], ny, nx))
 
     return INF
 
