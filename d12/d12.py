@@ -1,4 +1,4 @@
-inp = [l[:-1].split('-') for l in open('input.txt')]
+inp = [l.strip().split('-') for l in open('input.txt')]
 g = {v : {[a, b][a == v] for a, b in inp if v in [a,b]} for v in {w for l in inp for w in l}}
 
 # rep : control small caves, True if a small cave was repeated, then don't repeat again

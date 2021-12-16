@@ -8,7 +8,7 @@ import heapq
 # a grid is a sparse graph (e < 4v)
 
 INF = 1000000
-grid = [[*map(int,l[:-1])] for l in open('input.txt')]
+grid = [[*map(int,l.strip())] for l in open('input.txt')]
 n, m = len(grid), len(grid[0])
 
 def solve(rep = 1):

@@ -22,7 +22,7 @@ def star2(inp):
     return to_int(nums_most[0]) * to_int(nums_least[0])
 
 
-inp = [[*map(int, line[:-1])] for line in open('input.txt')]
+inp = [[*map(int, line.strip())] for line in open('input.txt')]
 cols = len(inp[0])
 
 print('Star 1:', star1(inp))

@@ -1,4 +1,4 @@
-grid = [[*map(int, l[:-1])] for l in open('input.txt')]
+grid = [[*map(int, l.strip())] for l in open('input.txt')]
 delta = [(1,0), (-1,0), (0,1), (0,-1)]
 n, m = len(grid), len(grid[0])
 

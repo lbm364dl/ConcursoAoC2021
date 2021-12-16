@@ -1,6 +1,6 @@
 import numpy as np
 
-inp = np.array([[*map(int,l[:-1])] for l in open('input.txt')])
+inp = np.array([[*map(int,l.strip())] for l in open('input.txt')])
 delta = [(1,0), (-1,0), (0,1), (0,-1), (1,1), (1,-1), (-1, 1), (-1,-1)]
 n, m = inp.shape
 FLASH_LEVEL = 10
