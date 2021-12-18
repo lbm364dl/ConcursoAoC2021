@@ -1,6 +1,6 @@
 from functools import reduce
 
-inp = [eval(l.strip().replace('[', '(').replace(']', ')')) for l in open('input.txt')]
+*inp, = map(eval, open('input.txt').readlines())
 IGNORE, EXIT, NEED_ADD = -1, -2, -3
 
 # performs the additions from explosion
