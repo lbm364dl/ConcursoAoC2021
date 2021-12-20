@@ -19,5 +19,5 @@ def solve(its, im):
 
     return sum(x == '1' for x in im.values())
 
-print(solve(2, im.copy()))
+print(solve(2, im))
 print(solve(50, im))
