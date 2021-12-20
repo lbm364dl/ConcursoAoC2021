@@ -8,8 +8,7 @@ pos = [x == '#' for x in pos]
 delta = [(i, j) for i in range(-1, 2) for j in range(-1, 2)]
 
 def solve(its, im):
-    i = 1
-    while i <= its:
+    for i in range(1, its+1):
         # in even iteration, use '1' as default
         cur = defaultdict(lambda: '10'[i&1])
         for y in range(-i, n+i):
@@ -17,7 +16,7 @@ def solve(its, im):
                 cur[(y, x)] = '01'[pos[int(''.join(im[(y+dy,x+dx)] for dy, dx in delta), 2)]]
     
         im = cur
-        i += 1
+
     return sum(x == '1' for x in im.values())
 
 print(solve(2, im.copy()))
