@@ -13,12 +13,7 @@ def volume(ops):
         return max(ops, key = lambda x: x[1])[0] == 'on'
 
     # sweep line, iterate events (some region starts or ends)
-    events = []
-    for op, i, [(x1,x2), *cs] in ops:
-        events.append((x1, op, i, cs))
-        events.append((x2, op, i, cs))
-
-    events.sort()
+    events = sorted((x, op, i, cs) for op, i, [xs, *cs] in ops for x in xs)
     # keep track of regions currently present at event
     sq = []
     using = set()
